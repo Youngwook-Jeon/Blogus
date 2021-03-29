@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import NProgress from "nprogress";
@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      {process.browser && <Navbar color="light" light expand="md">
         <Link href="/">
           <NavLink className="font-weight-bold">{APP_NAME}</NavLink>
         </Link>
@@ -81,7 +81,7 @@ const Header = () => {
             )}
           </Nav>
         </Collapse>
-      </Navbar>
+      </Navbar>}
     </div>
   );
 };
