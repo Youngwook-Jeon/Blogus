@@ -20,9 +20,9 @@ import {
 } from "reactstrap";
 import "../node_modules/nprogress/nprogress.css";
 
-Router.onRouteChangeStart = url => NProgress.start()
-Router.onRouteChangeComplete = url => NProgress.done()
-Router.onRouteChangeError = url => NProgress.done()
+Router.onRouteChangeStart = (url) => NProgress.start();
+Router.onRouteChangeComplete = (url) => NProgress.done();
+Router.onRouteChangeError = (url) => NProgress.done();
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,57 +31,67 @@ const Header = () => {
 
   return (
     <div>
-      {process.browser && <Navbar color="light" light expand="md">
-        <Link href="/">
-          <NavLink className="font-weight-bold">{APP_NAME}</NavLink>
-        </Link>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            {!isAuth() && (
+      {process.browser && (
+        <Navbar color="light" light expand="md">
+          <Link href="/">
+            <NavLink className="font-weight-bold">{APP_NAME}</NavLink>
+          </Link>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="ml-auto" navbar>
               <React.Fragment>
                 <NavItem>
-                  <Link href="/signin">
-                    <NavLink>로그인</NavLink>
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Link href="/signup">
-                    <NavLink>회원가입</NavLink>
+                  <Link href="/blogs">
+                    <NavLink>블로그</NavLink>
                   </Link>
                 </NavItem>
               </React.Fragment>
-            )}
 
-            {isAuth() && isAuth().role === 0 && (
-              <NavItem>
-                <Link href="/user">
-                  <NavLink>{`${isAuth().name}님의 대시보드`}</NavLink>
-                </Link>
-              </NavItem>
-            )}
+              {!isAuth() && (
+                <React.Fragment>
+                  <NavItem>
+                    <Link href="/signin">
+                      <NavLink>로그인</NavLink>
+                    </Link>
+                  </NavItem>
+                  <NavItem>
+                    <Link href="/signup">
+                      <NavLink>회원가입</NavLink>
+                    </Link>
+                  </NavItem>
+                </React.Fragment>
+              )}
 
-            {isAuth() && isAuth().role === 1 && (
-              <NavItem>
-                <Link href="/admin">
-                  <NavLink>{`${isAuth().name}님의 대시보드`}</NavLink>
-                </Link>
-              </NavItem>
-            )}
+              {isAuth() && isAuth().role === 0 && (
+                <NavItem>
+                  <Link href="/user">
+                    <NavLink>{`${isAuth().name}님의 대시보드`}</NavLink>
+                  </Link>
+                </NavItem>
+              )}
 
-            {isAuth() && (
-              <NavItem>
-                <NavLink
-                  style={{ cursor: "pointer" }}
-                  onClick={() => signout(() => Router.replace("/signin"))}
-                >
-                  로그아웃
-                </NavLink>
-              </NavItem>
-            )}
-          </Nav>
-        </Collapse>
-      </Navbar>}
+              {isAuth() && isAuth().role === 1 && (
+                <NavItem>
+                  <Link href="/admin">
+                    <NavLink>{`${isAuth().name}님의 대시보드`}</NavLink>
+                  </Link>
+                </NavItem>
+              )}
+
+              {isAuth() && (
+                <NavItem>
+                  <NavLink
+                    style={{ cursor: "pointer" }}
+                    onClick={() => signout(() => Router.replace("/signin"))}
+                  >
+                    로그아웃
+                  </NavLink>
+                </NavItem>
+              )}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      )}
     </div>
   );
 };
