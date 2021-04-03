@@ -36,6 +36,8 @@ const Card = ({ blog }) => {
       <section>
         {showBlogCategories(blog)}
         {showBlogTags(blog)}
+        <br />
+        <br />
       </section>
       <div className="row">
         <div className="col-md-4">

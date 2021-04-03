@@ -253,7 +253,7 @@ const CreateBlog = ({ router }) => {
             </div>
           </div>
           <div>
-            <h5>Categories</h5>
+            <h5>카테고리</h5>
             <hr />
             <ul style={{ maxHeight: "200px", overflowY: "scroll" }}>
               {showCategories()}
