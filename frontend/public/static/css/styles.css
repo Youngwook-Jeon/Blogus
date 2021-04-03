@@ -11,3 +11,7 @@
     max-height: 500px;
     object-fit: cover;
 }
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
