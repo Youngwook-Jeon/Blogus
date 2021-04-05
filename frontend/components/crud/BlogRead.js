@@ -42,6 +42,22 @@ const BlogRead = () => {
     });
   };
 
+  const showUpdateButton = (blog) => {
+    if (isAuth() && isAuth().role === 0) {
+        return (
+            <Link href={`/user/crud/${blog.slug}`}>
+                <a className="ms-2 btn btn-sm btn-warning">수정</a>
+            </Link>
+        )
+    } else if (isAuth() && isAuth().role === 1) {
+        return (
+            <Link href={`/admin/crud/${blog.slug}`}>
+                <a className="ms-2 btn btn-sm btn-warning">수정</a>
+            </Link>
+        )
+    }
+  }
+
   const showAllBlogs = () => {
     return blogs.map((blog, i) => (
       <div key={i} className="pb-5">
@@ -56,6 +72,7 @@ const BlogRead = () => {
         >
           삭제
         </button>
+        {showUpdateButton(blog)}
       </div>
     ));
   };

@@ -44,7 +44,7 @@ const Card = ({ blog }) => {
           <section>
             <img
               className="img img-fluid"
-              style={{ maxHeight: "150px", width: "auto" }}
+              style={{ maxHeight: "auto", width: "100%" }}
               src={`${API}/blog/photo/${blog.slug}`}
               onError={image => image.target.src = "https://picjumbo.com/wp-content/uploads/the-golden-gate-bridge-sunset-1080x720.jpg"}
               alt={blog.title}
