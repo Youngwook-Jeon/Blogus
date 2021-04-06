@@ -18,6 +18,7 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
+import Search from "./blog/Search";
 import "../node_modules/nprogress/nprogress.css";
 
 Router.onRouteChangeStart = (url) => NProgress.start();
@@ -92,6 +93,7 @@ const Header = () => {
           </Collapse>
         </Navbar>
       )}
+      <Search />
     </div>
   );
 };
