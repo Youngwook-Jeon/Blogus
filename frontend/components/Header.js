@@ -89,6 +89,12 @@ const Header = () => {
                   </NavLink>
                 </NavItem>
               )}
+
+              <NavItem>
+                <Link href="/user/crud/blog">
+                  <NavLink className="btn btn-primary text-light">블로그 작성</NavLink>
+                </Link>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
