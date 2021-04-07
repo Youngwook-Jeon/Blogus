@@ -29,8 +29,11 @@ const Card = ({ blog }) => {
       </header>
       <section>
         <p className="mark ml-1 pt-2 pb-2">
-          Written by {blog.postedBy.name} | Published{" "}
-          {moment(blog.updatedAt).fromNow()}
+          Written by{" "}
+          <Link href={`/profile/${blog.postedBy.username}`}>
+            <a>{blog.postedBy.username}</a>
+          </Link>{" "}
+          | Published {moment(blog.updatedAt).fromNow()}
         </p>
       </section>
       <section>
@@ -46,7 +49,10 @@ const Card = ({ blog }) => {
               className="img img-fluid"
               style={{ maxHeight: "auto", width: "100%" }}
               src={`${API}/blog/photo/${blog.slug}`}
-              onError={image => image.target.src = "https://picjumbo.com/wp-content/uploads/the-golden-gate-bridge-sunset-1080x720.jpg"}
+              onError={(image) =>
+                (image.target.src =
+                  "https://picjumbo.com/wp-content/uploads/the-golden-gate-bridge-sunset-1080x720.jpg")
+              }
               alt={blog.title}
             />
           </section>
