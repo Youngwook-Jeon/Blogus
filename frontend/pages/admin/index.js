@@ -36,6 +36,12 @@ const AdminIndex = () => {
                     <a>블로그 수정/삭제하기</a>
                   </Link>
                 </li>
+
+                <li className="list-group-item">
+                  <Link href="/user/update">
+                    <a>프로필 수정하기</a>
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="col-md-8">right</div>
