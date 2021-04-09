@@ -1,6 +1,22 @@
 import fetch from "isomorphic-fetch";
 import cookie from "js-cookie";
 import { API } from "../config";
+import Router from "next/router";
+
+export const handleResponse = (response) => {
+  if (response.status === 401) {
+    signout(() => {
+      Router.push({
+        pathname: "/signin",
+        query: {
+          message: "세션이 만료되었습니다. 다시 로그인을 하세요.",
+        },
+      });
+    });
+  } else {
+    return;
+  }
+};
 
 export const signup = (user) => {
   return fetch(`${API}/signup`, {
@@ -109,4 +125,4 @@ export const updateUser = (user, next) => {
       next();
     }
   }
-}
+};
