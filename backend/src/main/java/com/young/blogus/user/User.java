@@ -32,7 +32,7 @@ public class User {
 
     private String profile;
 
-    private String hashedPassword;
+    private String password;
 
     private String salt;
 
