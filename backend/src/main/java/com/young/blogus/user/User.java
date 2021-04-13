@@ -1,10 +1,12 @@
 package com.young.blogus.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +34,7 @@ public class User {
 
     private String profile;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // it may only be written in deserialization
     private String password;
 
     private String salt;
