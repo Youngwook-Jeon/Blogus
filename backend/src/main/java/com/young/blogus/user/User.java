@@ -1,7 +1,9 @@
 package com.young.blogus.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.young.blogus.enumeration.Role;
 import lombok.*;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -22,14 +24,13 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Size(min = 2, max = 32)
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
 
-    @Column(unique = true)
-    @Email(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String profile;
@@ -41,7 +42,8 @@ public class User implements Serializable {
 
     private String about;
 
-    private Integer role = 0;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     private String photo;
 
@@ -49,4 +51,9 @@ public class User implements Serializable {
 
     private LocalDateTime joinedAt;
 
+    public void completeSignup() {
+        this.joinedAt = LocalDateTime.now();
+        this.role = Role.USER;
+        this.username = RandomStringUtils.randomAlphanumeric(12);
+    }
 }

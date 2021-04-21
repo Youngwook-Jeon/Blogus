@@ -1,7 +1,8 @@
 package com.young.blogus.constant;
 
-public class UserImplConstant {
+public class UserConstant {
 
+    public static final String INVALID_PASSWORD = "비밀번호는 영문자 대소문자와 숫자로 이루어져야 하고 8자에서 20자 사이여야 합니다.";
     public static final String NAME_ALREADY_EXISTS = "이미 존재하는 이름입니다.";
     public static final String EMAIL_ALREADY_EXISTS = "이미 존재하는 이메일입니다.";
     public static final String NO_USER_FOUND_BY_NAME = "존재하지 않는 유저의 이름: ";

@@ -3,6 +3,7 @@ package com.young.blogus.main;
 import com.young.blogus.shared.HttpResponse;
 import com.young.blogus.user.User;
 import com.young.blogus.user.UserService;
+import com.young.blogus.user.form.SignupForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +26,8 @@ public class MainController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<HttpResponse> signup(@Valid @RequestBody User user) {
-        userService.signup(user.getName(), user.getPassword(), user.getEmail());
+    public ResponseEntity<HttpResponse> signup(@Valid @RequestBody SignupForm signupForm) {
+        userService.signup(signupForm);
         return response(OK, SIGNUP_SUCCESS);
     }
 
