@@ -1,5 +1,7 @@
 package com.young.blogus.main;
 
+import com.young.blogus.exception.domain.EmailExistException;
+import com.young.blogus.exception.domain.NameExistException;
 import com.young.blogus.shared.HttpResponse;
 import com.young.blogus.user.User;
 import com.young.blogus.user.UserService;
@@ -26,7 +28,8 @@ public class MainController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<HttpResponse> signup(@Valid @RequestBody SignupForm signupForm) {
+    public ResponseEntity<HttpResponse> signup(@Valid @RequestBody SignupForm signupForm)
+            throws NameExistException, EmailExistException {
         userService.signup(signupForm);
         return response(OK, SIGNUP_SUCCESS);
     }
